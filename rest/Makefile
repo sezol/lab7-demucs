@@ -1,5 +1,5 @@
 VERSION=v1
-DOCKERUSER=YOUR_DOCKER_USERNAME_HERE
+DOCKERUSER=sejalhukare
 
 build:
 	docker build -f Dockerfile-rest -t demucs-rest .

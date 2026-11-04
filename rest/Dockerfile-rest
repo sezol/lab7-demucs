@@ -1,0 +1,11 @@
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1
+WORKDIR /app
+
+RUN pip install --no-cache-dir flask redis minio requests jsonpickle
+
+COPY rest-server.py .
+
+EXPOSE 5000
+CMD ["python3", "rest-server.py"]
