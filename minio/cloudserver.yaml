@@ -12,6 +12,9 @@ spec:
       labels:
         app: minio
     spec:
+      # Kubernetes injects REDIS_PORT=tcp://... from the redis service, which
+      # breaks this image's startup script, so don't inject service variables.
+      enableServiceLinks: false
       containers:
       - name: s3
         image: zenko/cloudserver
@@ -26,6 +29,9 @@ spec:
           value: "accessKey1"
         - name: SCALITY_SECRET_ACCESS_KEY
           value: "verySecretKey1"
+        # Hostname that the REST and worker pods use to reach this service
+        - name: ENDPOINT
+          value: "minio"
 ---
 apiVersion: v1
 kind: Service
